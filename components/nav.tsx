@@ -14,7 +14,7 @@ const lobster = Lobster({ subsets: ["latin"], weight: ["400"] });
 export default function Nav() {
   const { user } = getUser();
   const router = useRouter();
-
+  const pathname = usePathname();
   const signOut = () => {
     clearLocalStorage();
     router.refresh();
@@ -27,7 +27,6 @@ export default function Nav() {
         </Link>
         <nav className="flex items-center gap-8">
           {NAV_LINKS.map((i) => {
-            const pathname = usePathname();
             return (
               <Link href={i.href} key={i.id}>
                 <div className="flex items-center gap-1">
