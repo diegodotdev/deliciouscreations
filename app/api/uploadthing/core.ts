@@ -3,8 +3,6 @@ import { z } from "zod";
 
 const f = createUploadthing();
 
-const auth = (req: Request) => ({ id: "fakeId" }); // Fake auth function
-
 export const ourFileRouter = {
   imageUploader: f({ image: { maxFileSize: "4MB" } })
     .input(
@@ -18,7 +16,7 @@ export const ourFileRouter = {
     .onUploadComplete(async ({ metadata, file }) => {
       const { configId } = metadata.input;
 
-      return { url: file.url };
+      return { url: file.url, configId };
     }),
 } satisfies FileRouter;
 
