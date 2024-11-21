@@ -25,7 +25,7 @@ export default async function Recipe({
           />
         </div>
         <div className="w-full flex justify-between items-center">
-          <Link href={`/users/${recipe?.clerkId}`} prefetch={true}>
+          <Link href={`/users/${recipe?.clerkId}`}>
             <div className="flex items-center gap-2">
               <div className="relative w-9 h-9 rounded-full overflow-hidden">
                 <Image

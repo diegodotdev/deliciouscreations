@@ -20,14 +20,9 @@ export default async function Home() {
         <br className="hidden lg:inline" /> recipe book
       </p>
       <SearchForm />
-      <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 place-items-start gap-8">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 place-items-start gap-8">
         {data.map((i) => (
-          <Link
-            href={`/recipes/${i.id}`}
-            className="w-full"
-            key={i.id}
-            prefetch={true}
-          >
+          <Link href={`/recipes/${i.id}`} className="w-full" key={i.id}>
             <div className="relative w-full rounded-lg overflow-hidden h-[200px]">
               <Image
                 src={i.imageUrl}

@@ -27,14 +27,9 @@ function SearchComponent() {
         <p className="text-4xl font-[600]">Showing results for: {q}</p>
       </div>
       <Separator />
-      <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 place-items-start gap-8">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 place-items-start gap-8">
         {data?.map((i) => (
-          <Link
-            href={`/recipes/${i.id}`}
-            prefetch={true}
-            className="w-full"
-            key={i.id}
-          >
+          <Link href={`/recipes/${i.id}`} className="w-full" key={i.id}>
             <Card className="w-full">
               <CardContent className="pt-5">
                 <div className="w-full relative h-[200px] rounded-xl overflow-hidden">

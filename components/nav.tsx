@@ -28,7 +28,7 @@ export default function Nav() {
         </Link>
         <nav className="hidden lg:flex items-center gap-5">
           {NAV_LINKS.map((i) => (
-            <Link href={i.href} key={i.id} prefetch={true}>
+            <Link href={i.href} key={i.id}>
               <div className="flex items-center gap-1">
                 <i.icon
                   className={cn(pathname === i.href ? "text-red-400" : "")}
@@ -39,7 +39,7 @@ export default function Nav() {
             </Link>
           ))}
           <SignedIn>
-            <Link href="/profile" prefetch={true}>
+            <Link href="/profile">
               <div className="flex items-center gap-1">
                 <User
                   className={cn(pathname === "/profile" ? "text-red-400" : "")}

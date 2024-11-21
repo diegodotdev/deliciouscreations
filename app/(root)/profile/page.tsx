@@ -46,7 +46,7 @@ export default async function Profile() {
         <Button className="w-full">Post</Button>
       </Link>
       <Separator />
-      <div className="w-full grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 2xl:grid-cols-5 place-items-start gap-8">
+      <div className="w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 place-items-start gap-8">
         {user?.recipes.map((i) => (
           <Dialog key={i.id}>
             <DialogTrigger className="w-full">
@@ -71,12 +71,7 @@ export default async function Profile() {
                 <DialogTitle>{i.name}</DialogTitle>
               </DialogHeader>
               <div className="flex items-center gap-4 py-4">
-                <Link
-                  href={`/recipes/${i.id}`}
-                  prefetch={true}
-                  className="w-1/2"
-                  key={i.id}
-                >
+                <Link href={`/recipes/${i.id}`} className="w-1/2" key={i.id}>
                   <Button className="w-full">View</Button>
                 </Link>
                 <DeleteButton id={i?.id} />
