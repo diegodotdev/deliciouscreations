@@ -1,72 +1,67 @@
-import MaxWidthWrapper from "./max-width-wrapper";
-import Link from "next/link";
-import { Lobster } from "next/font/google";
-import { cn } from "@/lib/utils";
-import { NAV_LINKS } from "@/constants";
-import { usePathname } from "next/navigation";
-import getUser from "@/hooks/getUser";
-import { Pen } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { clearLocalStorage } from "@/lib/utils";
+"use client";
 
-const lobster = Lobster({ subsets: ["latin"], weight: ["400"] });
+import Link from "next/link";
+import MaxWidthWrapper from "@/components/max-width-wrapper";
+import { NAV_LINKS } from "@/constants";
+import { cn } from "@/lib/utils";
+import { lobster } from "@/app/fonts";
+import { usePathname } from "next/navigation";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignOutButton,
+} from "@clerk/nextjs";
+import { Button } from "./ui/button";
+import { User } from "lucide-react";
+import { ModeToggle } from "./mode-toggle";
+import SideMenu from "./side-menu";
 
 export default function Nav() {
-  const { user } = getUser();
-  const router = useRouter();
   const pathname = usePathname();
-  const signOut = () => {
-    clearLocalStorage();
-    router.refresh();
-  };
+
   return (
     <div className="w-full h-[10vh]">
       <MaxWidthWrapper className="h-full flex justify-between items-center">
         <Link href="/">
           <p className={cn("text-4xl", lobster.className)}>delicious</p>
         </Link>
-        <nav className="flex items-center gap-8">
-          {NAV_LINKS.map((i) => {
-            return (
-              <Link href={i.href} key={i.id}>
-                <div className="flex items-center gap-1">
-                  <i.icon
-                    size={15}
-                    className={cn(pathname === i.href ? "text-red-400" : "")}
-                  />
-                  <p>{i.label}</p>
-                </div>
-              </Link>
-            );
-          })}
-          {user ? (
-            <>
-              <Link href="/post">
-                <div className="flex items-center gap-1">
-                  <Pen
-                    size="15px"
-                    className={cn(
-                      location.pathname === "/post" ? "text-red-400" : ""
-                    )}
-                  />
-                  <span>Post</span>
-                </div>
-              </Link>
-              <button
-                className="px-4 py-2 bg-red-400 rounded-lg text-white"
-                onClick={signOut}
-              >
-                Sign Out
-              </button>
-            </>
-          ) : (
-            <Link href="/auth">
-              <button className="px-4 py-2 bg-neutral-200 text-[#0b1215] rounded-lg">
-                Sign In
-              </button>
+        <nav className="hidden lg:flex items-center gap-5">
+          {NAV_LINKS.map((i) => (
+            <Link href={i.href} key={i.id} prefetch={true}>
+              <div className="flex items-center gap-1">
+                <i.icon
+                  className={cn(pathname === i.href ? "text-red-400" : "")}
+                  size={15}
+                />
+                <p>{i.label}</p>
+              </div>
             </Link>
-          )}
+          ))}
+          <SignedIn>
+            <Link href="/profile" prefetch={true}>
+              <div className="flex items-center gap-1">
+                <User
+                  className={cn(pathname === "/profile" ? "text-red-400" : "")}
+                  size={15}
+                />
+                <p>Profile</p>
+              </div>
+            </Link>
+            <SignOutButton>
+              <Button>Sign Out</Button>
+            </SignOutButton>
+          </SignedIn>
+          <SignedOut>
+            <SignInButton>
+              <Button>Sign In</Button>
+            </SignInButton>
+          </SignedOut>
+          <ModeToggle />
         </nav>
+        <div className="lg:hidden">
+          <SideMenu />
+        </div>
       </MaxWidthWrapper>
     </div>
   );
