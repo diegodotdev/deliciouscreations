@@ -25,8 +25,8 @@ export default async function Profile() {
         <div className="flex items-center gap-4">
           <div className="relative w-60 h-44 rounded-xl overflow-hidden">
             <Image
-              src={user?.imageUrl! || ""}
-              alt={user?.username!}
+              src={user?.imageUrl as string}
+              alt={user?.username as string}
               fill
               className="object-cover"
             />

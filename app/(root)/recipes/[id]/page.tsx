@@ -18,8 +18,8 @@ export default async function Recipe({
         <p className="font-[600] text-4xl">{recipe?.name}</p>
         <div className="relative w-full h-[400px] rounded-xl overflow-hidden">
           <Image
-            src={recipe?.imageUrl!}
-            alt={recipe?.name!}
+            src={recipe?.imageUrl as string}
+            alt={recipe?.name as string}
             fill
             className="object-cover"
           />
@@ -29,8 +29,8 @@ export default async function Recipe({
             <div className="flex items-center gap-2">
               <div className="relative w-9 h-9 rounded-full overflow-hidden">
                 <Image
-                  src={recipe?.user?.imageUrl!}
-                  alt={recipe?.user.username!}
+                  src={recipe?.user?.imageUrl as string}
+                  alt={recipe?.user.username as string}
                   className="object-cover"
                   fill
                 />

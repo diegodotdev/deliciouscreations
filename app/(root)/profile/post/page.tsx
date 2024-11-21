@@ -7,7 +7,7 @@ export default async function Post() {
     "use server";
 
     try {
-      const data = await db.recipes.create({
+      await db.recipes.create({
         data: {
           ...body,
         },
