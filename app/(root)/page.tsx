@@ -14,7 +14,7 @@ export default async function Home() {
   ).slice(0, 5);
 
   return (
-    <MaxWidthWrapper className="h-[90vh] flex flex-col justify-center items-center gap-14">
+    <MaxWidthWrapper className="min-h-[90vh] flex flex-col justify-center items-center gap-14">
       <p className="text-5xl lg:text-7xl font-[600] text-center leading-tight">
         Find or create your perfect
         <br className="hidden lg:inline" /> recipe book
